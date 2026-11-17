@@ -1,33 +1,27 @@
-# Cost Calendar
+# CostTracker prototype
 
-A calendar and cost tracker that runs in Safari and installs on your iPhone home screen. Everything is saved on the device and it works offline.
+Clickable iPhone prototype for CostTracker, a calendar that knows what your plans cost.
 
-## Put it on GitHub Pages
+## What's here
 
-1. On github.com, click **New repository**, name it `cost-calendar`, set it to **Public** and create it.
-2. On the empty repository page, click **uploading an existing file**. Drag in **everything inside this folder**: `index.html`, `app.js`, `sw.js`, `manifest.webmanifest`, `.nojekyll`, `README.md` and the `icons` folder. Then click **Commit changes**.
-   - On a Mac, `.nojekyll` is hidden. Press Cmd+Shift+. in Finder to show it. The site still works without it.
-3. Go to **Settings › Pages**. Under *Build and deployment*, choose **Deploy from a branch**, pick **main** and **/ (root)**, then click **Save**.
-4. After a minute or two, the site is live at `https://YOUR-USERNAME.github.io/cost-calendar/`.
+| File | What it is |
+| --- | --- |
+| `prototype/Main.dc.html` | The whole prototype: screens, sample data and logic in one file |
+| `prototype/canvas.json` | Canvas settings (artboard size, title) |
 
-## Add it to your iPhone
+## How to view it
 
-1. Open the link in **Safari**.
-2. Tap **Share › Add to Home Screen**. If you see an **Open as Web App** switch, leave it on. Then tap **Add**.
-3. Always open it from the home-screen icon. The home-screen app keeps its own storage, separate from Safari tabs.
+`Main.dc.html` is a Claude design-canvas file. It runs on the CostTracker design canvas in Claude, not as a plain web page, so opening it straight from GitHub or a browser shows the source rather than the app.
 
-## Your data
+To work on it, upload this file back to the canvas or ask Claude to load it from this repo.
 
-- Events and settings save automatically on the phone. Nothing goes to a server.
-- Deleting the home-screen icon deletes its data. Use **Settings › Backup and restore › Export a backup** now and then, and choose **Save to Files** to keep the copy in iCloud Drive.
-- To move to a new phone, or to recover, use **Restore from a backup** and pick that file.
+## Snapshot
 
-## Updating the app
+Exported 17 Nov 2026 (canvas version 46). Includes:
 
-Upload the new files over the old ones in the repository. GitHub Pages republishes in a minute or two. The next time you open the app with a connection, it picks up the new version. Close the app and reopen it if you don't see the change.
-
-## What's not live yet
-
-- **Reminders** are saved with events, but they won't send notifications. A web app needs a push server for that.
-- **Calendar sync**, **Shared itinerary** and **Send feedback** are still design mockups.
-- Attachments store the file's name and size, not the file itself.
+- Calendar with month, week and list views, press-and-hold to add, tappable day headings
+- Insights with future months, tappable categories, View all payments (sort by date or category) and the income line
+- Money tab: budgets, goals, memberships, people, with empty states (preview from Settings)
+- Settings: multiple incomes with pay rules, calendar defaults, category order (drag, A to Z, by spend)
+- Bank import with duplicate checking, cash vs card, Apple Pay auto-logging
+- Floating tab bar
