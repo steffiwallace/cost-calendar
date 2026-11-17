@@ -1,0 +1,16 @@
+CostTracker test build – how to put it online
+
+1. Open github.com/steffiwallace/cost-calendar
+2. Click "Add file" > "Upload files"
+3. Drag the whole "costtracker" FOLDER (not just the files inside it) onto the page
+4. Click "Commit changes"
+5. Wait 1–2 minutes for GitHub Pages to update (the Actions tab shows a green tick when it's done)
+6. Open on your phone:  https://steffiwallace.github.io/cost-calendar/costtracker/
+
+Your current app at https://steffiwallace.github.io/cost-calendar/ is not changed.
+
+Good to know
+- This test version starts fresh each time you open it. Nothing you add is saved yet.
+- Face ID, Apple Pay and bank connection are simulated, as in the prototype.
+- To add it to your home screen: open the link in Safari > Share > Add to Home Screen.
+- Main.dc.html and canvas.json in the repo don't do anything on the website. You can delete them or leave them.
