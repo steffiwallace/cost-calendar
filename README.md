@@ -1,27 +1,35 @@
-# CostTracker prototype
+# CostTracker – the cost tracking calendar
 
-Clickable iPhone prototype for CostTracker, a calendar that knows what your plans cost.
+A working prototype that runs as a home-screen app on iPhone. It's hosted with GitHub Pages.
 
-## What's here
+## What's in this folder
 
 | File | What it is |
 | --- | --- |
-| `prototype/Main.dc.html` | The whole prototype: screens, sample data and logic in one file |
-| `prototype/canvas.json` | Canvas settings (artboard size, title) |
+| `index.html` | The whole app |
+| `support.js` | The engine that runs the app's screens |
+| `manifest.webmanifest` | Tells phones the app's name, colours and icon |
+| `icons/` | The app icon (`apple-touch-icon.png` is the one iPhone uses) |
 
-## How to view it
+## Updating the live app
 
-`Main.dc.html` is a Claude design-canvas file. It runs on the CostTracker design canvas in Claude, not as a plain web page, so opening it straight from GitHub or a browser shows the source rather than the app.
+1. Open the repository on github.com.
+2. **Add file → Upload files**, then drag in everything from this folder, including the `icons` folder.
+3. Commit the changes. GitHub replaces files that have the same name.
+4. Wait a minute or two for GitHub Pages to update. The **Actions** tab shows a green tick when it's live.
 
-To work on it, upload this file back to the canvas or ask Claude to load it from this repo.
+First time only: **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`, then **Save**. The address appears at the top of that page.
 
-## Snapshot
+## Putting it on an iPhone
 
-Exported 17 Nov 2026 (canvas version 46). Includes:
+1. Open the GitHub Pages address in **Safari**.
+2. Tap **Share → Add to Home Screen → Add**.
+3. Open it from the home screen icon.
 
-- Calendar with month, week and list views, press-and-hold to add, tappable day headings
-- Insights with future months, tappable categories, View all payments (sort by date or category) and the income line
-- Money tab: budgets, goals, memberships, people, with empty states (preview from Settings)
-- Settings: multiple incomes with pay rules, calendar defaults, category order (drag, A to Z, by spend)
-- Bank import with duplicate checking, cash vs card, Apple Pay auto-logging
-- Floating tab bar
+To see a new icon after an update, delete the home screen icon (your data stays) and add it again.
+
+## Good to know
+
+- Each phone keeps its own data. You and your partner each have your own plans and spending; nothing is shared between you.
+- Data is saved on the phone as you go. Clearing Safari's website data will erase it.
+- Always open it from the home screen icon. A Safari tab keeps separate data from the home screen app.
