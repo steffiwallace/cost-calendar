@@ -8,6 +8,12 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <style>html,body{height:100%;background:#F2F2F7;overscroll-behavior:none;-webkit-text-size-adjust:100%}body>x-dc,body>div,body>div>.sc-host{display:block;height:100%}</style>
 <script>window.CT_PERSIST=true</script>
+<script>
+// Keep the app up to date: use the network-first sw.js, and reload once if an older version was in charge
+(function(){try{if(!('serviceWorker' in navigator))return;var had=!!navigator.serviceWorker.controller,done=false;
+navigator.serviceWorker.addEventListener('controllerchange',function(){if(had&&!done){done=true;location.reload();}});
+navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(function(r){r.update&&r.update();}).catch(function(){});}catch(e){}})();
+</script>
 <script src="./support.js"></script>
 
 <x-dc>
