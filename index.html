@@ -1,22 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>CostTracker</title>
+<meta name="apple-mobile-web-app-title" content="CostTracker">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="CostTracker">
-<meta name="theme-color" content="#F2F2F7">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#7C3AED">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png?v=2">
+<link rel="manifest" href="./manifest.webmanifest">
+<style>html,body{height:100%;background:#F2F2F7;overscroll-behavior:none;-webkit-text-size-adjust:100%}body>x-dc,body>div,body>div>.sc-host{display:block;height:100%}</style>
 <script>window.CT_PERSIST=true</script>
-<style>html,body{margin:0;height:100%;background:#F2F2F7;overscroll-behavior:none;-webkit-text-size-adjust:100%}body{box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body>x-dc,body>div,body>div>.sc-host{display:block;height:100%}</style>
 <script src="./support.js"></script>
-</head>
-<body>
+
 <x-dc>
 <helmet>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -1152,7 +1145,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--acc,#7C3AED)!importan
 <div style="display:flex;align-items:center;gap:12px;min-height:64px;border-top:1px solid #E5E5EA"><span style="flex:none;width:36px;height:36px;border-radius:11px;background:rgba(124,58,237,.12);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ic.faceid}}"></path></svg></span><span style="flex:1"><span style="display:block;font-size:15px;font-weight:600">Face ID lock</span><span style="display:block;font-size:13px;color:#6C6C70">Always on to keep your money private</span></span><span style="font-size:13px;font-weight:600;color:#0F7B4E">On</span></div>
 <div style="border-top:1px solid #E5E5EA;padding:12px 0"><div style="font-size:14px;font-weight:600">Lock when I leave the app</div><div role="group" aria-label="Lock timing" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><sc-for list="{{lockOpts}}" as="o" hint-placeholder-count="3"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}" style="height:44px;box-sizing:border-box;padding:0 12px;border-radius:22px;border:{{o.bd}};background:{{o.bg}};color:{{o.fg}};font-size:13px;font-weight:600">{{o.label}}</button></sc-for></div></div>
 <div style="display:flex;align-items:center;gap:12px;min-height:64px;border-top:1px solid #E5E5EA"><label for="sw-icloud" style="flex:1;font-size:15px;font-weight:600;cursor:pointer">iCloud backup<span style="display:block;font-size:13px;font-weight:400;color:#6C6C70">{{icloudSub}}</span></label><input id="sw-icloud" class="sw" type="checkbox" role="switch" checked="{{icloud}}" onChange="{{toggleIcloud}}"></div>
-<sc-if value="{{icloudOff}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:0 0 12px;padding:10px 12px;border-radius:12px;background:#FFF3E0;font-size:13px;line-height:1.4;color:#8A4500;font-weight:600">Without iCloud backup, losing or replacing this iPhone means losing your CostTracker data. Export a CSV regularly if you keep this off.</p></sc-if>
+<sc-if value="{{icloudOff}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:0 0 12px;padding:10px 12px;border-radius:12px;background:#FFF3E0;font-size:13px;line-height:1.4;color:#8A4500;font-weight:600">Without iCloud backup, losing or replacing this iPhone means losing your CostTracker data. Use Back up your data in Settings regularly if you keep this off.</p></sc-if>
 <button onClick="{{lockNow}}" style="width:100%;height:52px;border:0;border-top:1px solid #E5E5EA;background:transparent;padding:0;text-align:left;color:{{acc}};font-size:15px;font-weight:600">Lock now (preview the lock screen)</button>
 </section>
 </sc-if>
@@ -2781,6 +2774,58 @@ class Component extends DCLogic {
     this.toast('Apple Pay: ' + this.m(e.amt) + ' at ' + e.title + ' logged' + (rule ? '' : '. Tap it to rename'), () => this.setState((st) => ({ entries: st.entries.filter((x) => x.id !== e.id) })));
   }
   buzz() { try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {} }
+  // ---- Back up and restore: your data as a file you keep (Files, iCloud Drive, email) and can load back in ----
+  backupData() {
+    const at = new Date(), pad = (n) => String(n).padStart(2, '0');
+    const stamp = at.getFullYear() + '-' + pad(at.getMonth() + 1) + '-' + pad(at.getDate());
+    const body = JSON.stringify({ app: 'CostTracker', v: 1, at: at.getTime(), idn: this.idn, state: ctPick(this.state) });
+    const name = 'CostTracker backup ' + stamp + '.json';
+    let file = null;
+    try { file = new File([body], name, { type: 'application/json' }); } catch (e) {}
+    // iPhone: the share sheet, where Save to Files keeps it. Elsewhere: a normal download
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: name })
+        .then(() => this.toast('Backup saved'))
+        .catch((e) => { if (!e || e.name !== 'AbortError') this.downloadBackup(body, name); });
+      return;
+    }
+    this.downloadBackup(body, name);
+  }
+  downloadBackup(body, name) {
+    try {
+      const url = URL.createObjectURL(new Blob([body], { type: 'application/json' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = name; a.style.display = 'none';
+      document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1500);
+      this.toast('Backup downloaded');
+    } catch (e) { this.toast('Couldn’t make the backup. Try again'); }
+  }
+  restoreData() {
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = '.json,application/json,text/plain'; inp.style.display = 'none';
+    inp.onchange = () => {
+      const f = inp.files && inp.files[0]; inp.remove();
+      if (!f) return;
+      const rd = new FileReader();
+      rd.onload = () => {
+        let d = null;
+        try { d = JSON.parse(rd.result); } catch (e) {}
+        if (!d || d.app !== 'CostTracker' || !d.state || typeof d.state !== 'object' || !Array.isArray(d.state.entries)) {
+          this.toast('That file isn’t a CostTracker backup'); return;
+        }
+        const prev = ctPick(this.state), prevIdn = this.idn;
+        const when = d.at ? new Date(d.at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+        this.idn = Math.max(this.idn, d.idn || 0);
+        this.setState(Object.assign(ctRestore(ctPick(d.state)), { locked: false, settings: false, stPage: null }), () => this.saveNow(true));
+        this.toast('Restored your backup' + (when ? ' from ' + when : ''), () => { this.idn = Math.max(prevIdn, this.idn); this.setState(prev, () => this.saveNow(true)); });
+      };
+      rd.onerror = () => this.toast('Couldn’t open that file');
+      rd.readAsText(f);
+    };
+    document.body.appendChild(inp);
+    inp.click();
+  }
   toast(msg, undo) {
     clearTimeout(this._tt);
     this.setState({ toast: { msg, undo } });
@@ -5171,6 +5216,8 @@ class Component extends DCLogic {
       ] },
       { title: 'Privacy and data', rows: [
         row('Privacy and security', 'Face ID, hiding amounts, iCloud backup', 'faceid', '#7C3AED', go('priv')),
+        row('Back up your data', 'Save a copy to Files or iCloud Drive', 'up', '#0F7B4E', () => this.backupData(), { chev: false }),
+        row('Restore from a backup', 'Replaces what’s on this phone. You can undo straight after', 'down', '#1C7ED6', () => this.restoreData(), { chev: false }),
         row('Export as a spreadsheet (CSV)', 'Everything you’ve logged', 'down', '#0C8599', () => this.toast('Export ready. In the real app this saves a .csv to Files'), { chev: false }),
         row('Sync plans with your calendar', 'Apple or Google Calendar', 'calendar', '#1C7ED6', () => this.toast('In the real app, plans sync both ways with your phone’s calendar'), { chev: false }),
         row('Recently deleted', s.deleted.length ? s.deleted.length + ' item' + (s.deleted.length === 1 ? '' : 's') + ' you can restore' : 'Nothing to restore', 'trash', '#6C6C70', go('del'))
@@ -5289,5 +5336,5 @@ class Component extends DCLogic {
   }
 }
 </script>
-</body>
-</html>
+
+</body></html>
